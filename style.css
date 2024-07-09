@@ -14,37 +14,59 @@ header {
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 0 auto;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
     padding: 0 20px;
 }
 
-nav ul {
+.left-text {
+    flex: 1;
+}
+
+.left-text p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.center-nav {
+    flex: 2;
+}
+
+.center-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    justify-content: center;
 }
 
-nav ul li {
+.center-nav ul li {
     margin: 0 15px;
 }
 
-nav ul li a {
+.center-nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
 }
 
-nav ul li a:hover {
+.center-nav ul li a:hover {
     color: #007bff;
-}
-
-.logo img {
-    max-width: 100px; /* Adjust size as needed */
-}
-
-.left-nav,
-.right-nav {
-    display: flex;
-    align-items: center;
 }
