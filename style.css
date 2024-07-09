@@ -56,13 +56,30 @@ header {
 }
 
 
-/* SMW Bigfont */
+/* Custom Fonts */
 @font-face {
     font-family: 'SMW Superbig';
     src: url('/fonts/super-mario-world-superbig.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('/fonts/Unbounded-VariableFont_wght.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gabarito';
+    src: url('/fonts/Gabarito-VariableFont_wght.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 
 .left-text p {
     font-family: 'SMW Superbig', sans-serif; /* Apply the custom font */
