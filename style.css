@@ -78,9 +78,6 @@ header {
     font-style: normal;
 }
 
-
-
-
 .left-text p {
     font-family: 'SMW Superbig', sans-serif; /* Apply the custom font */
     margin: 0;
@@ -98,4 +95,3 @@ header {
 .center-nav ul li a:hover {
     color: #007bff;
 }
-
