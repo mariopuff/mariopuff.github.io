@@ -5,21 +5,24 @@ body {
 }
 
 header {
-    text-align: center;
-    padding: 20px 0;
     background-color: #f8f9fa;
+    padding: 10px 0;
 }
 
-.logo img {
-    max-width: 100px; /* Adjust size as needed */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 20px 0 0 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
 }
 
 nav ul li {
@@ -34,4 +37,14 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #007bff;
+}
+
+.logo img {
+    max-width: 100px; /* Adjust size as needed */
+}
+
+.left-nav,
+.right-nav {
+    display: flex;
+    align-items: center;
 }
