@@ -22,12 +22,12 @@ header {
 }
 
 .left-text {
-    color: #fff; /* Set text color to white */
+    color: #fff !important; /* Set text color to white */
 }
 
 .left-text p {
     margin: 0;
-    font-weight: bold;
+    font-weight: normal;
     font-family: 'SMW Superbig', sans-serif;
     font-size: 24px;
 }
