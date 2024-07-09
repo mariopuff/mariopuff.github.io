@@ -14,13 +14,13 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* Center vertically */
     justify-content: space-between; /* Spacing between left-text and center-nav */
+    align-items: center; /* Center vertically */
     padding: 0 20px;
 }
 
 .left-text {
-    /* Optional: Adjust width if needed */
+    /* Adjust width if needed */
 }
 
 .left-text p {
@@ -28,12 +28,16 @@ header {
     font-weight: bold;
 }
 
+.center-nav {
+    text-align: center; /* Center align navigation links */
+}
+
 .center-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Center align navigation links */
+    justify-content: center; /* Center align navigation links horizontally */
 }
 
 .center-nav ul li {
