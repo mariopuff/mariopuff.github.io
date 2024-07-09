@@ -14,30 +14,12 @@ header {
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #f8f9fa;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
 .left-text {
-    flex: 1;
+    flex: 1; /* Take up remaining space */
 }
 
 .left-text p {
@@ -46,7 +28,9 @@ header {
 }
 
 .center-nav {
-    flex: 2;
+    flex: 2; /* Take up more space */
+    display: flex;
+    justify-content: center;
 }
 
 .center-nav ul {
@@ -54,7 +38,6 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
 }
 
 .center-nav ul li {
