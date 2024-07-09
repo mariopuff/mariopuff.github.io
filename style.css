@@ -59,40 +59,51 @@ header {
 /* Custom Fonts */
 @font-face {
     font-family: 'SMW Superbig';
-    src: url('/fonts/super-mario-world-superbig.woff') format('woff');
+    src: url('fonts/super-mario-world-superbig.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Unbounded';
-    src: url('/fonts/Unbounded.woff') format('woff');
+    src: url('fonts/Unbounded.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Gabarito';
-    src: url('/fonts/Gabarito.woff') format('woff');
+    src: url('fonts/Gabarito.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-
-
+/* Apply ParagraphFont to all <p> elements */
 p {
-    font-family: 'Gabarito', sans-serif; /* Apply the new font to all <p> elements */
+    font-family: 'Gabarito', sans-serif;
 }
 
 .left-text p {
-    font-family: 'SMW Superbig', sans-serif; /* Apply the custom font */
+    font-family: 'SMW Superbig', sans-serif;
     margin: 0;
     font-weight: normal;
-    font-size: 24px; /* Adjust font size as needed */
+    font-size: 24px;
+}
+
+.center-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centering the nav links */
+    padding: 0;
+    margin: 0;
+}
+
+.center-nav ul li {
+    margin: 0 15px; /* Spacing between nav items */
 }
 
 .center-nav ul li a {
-    font-family: 'Unbounded', sans-serif; /* Apply the new font */
+    font-family: 'Unbounded', sans-serif;
     text-decoration: none;
     color: #333;
     font-weight: normal;
