@@ -78,6 +78,12 @@ header {
     font-style: normal;
 }
 
+
+
+p {
+    font-family: 'Gabarito', sans-serif; /* Apply the new font to all <p> elements */
+}
+
 .left-text p {
     font-family: 'SMW Superbig', sans-serif; /* Apply the custom font */
     margin: 0;
