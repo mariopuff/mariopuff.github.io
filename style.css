@@ -29,7 +29,8 @@ header {
 }
 
 .center-nav {
-    text-align: center; /* Center align navigation links */
+    /* Center align navigation links horizontally */
+    margin: 0 auto; /* Center the entire nav block horizontally */
 }
 
 .center-nav ul {
