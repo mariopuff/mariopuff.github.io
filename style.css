@@ -22,7 +22,7 @@ header {
 }
 
 .left-text {
-    /* Adjust width if needed */
+    color: #fff; /* Set text color to white */
 }
 
 .left-text p {
@@ -30,7 +30,6 @@ header {
     font-weight: bold;
     font-family: 'SMW Superbig', sans-serif;
     font-size: 24px;
-    font-color: #fff
 }
 
 /* Center the navigation links horizontally */
@@ -59,7 +58,6 @@ header {
 
 .center-nav ul li a:hover {
     text-decoration: underline dotted; /* Dotted underline on hover */
-    color: #fff; /* Keep the text color white */
 }
 
 /* Custom Fonts */
