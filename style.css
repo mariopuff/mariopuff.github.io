@@ -23,14 +23,15 @@ header {
 }
 
 .left-text {
-    color: #fff; /* Set text color to white */
+    /* Adjust width if needed */
 }
 
 .left-text p {
     margin: 0;
-    font-weight: bold;
     font-family: 'SMW Superbig', sans-serif;
     font-size: 24px;
+    font-weight: normal; /* Set text to normal weight */
+    color: #fff; /* Set text color to white */
 }
 
 /* Center the navigation links horizontally */
