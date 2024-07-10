@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+        /* Gradient Overlay */
+        .gradient-overlay {
+            position: absolute;
+            top: 420px;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+            z-index: -1; /* Ensure it's above the projects content */
+            pointer-events: none; /* Allow interaction with underlying content */
+        }
+</style>
 <body>
     <header>
         <div class="container">
@@ -16,17 +31,51 @@
             <nav class="center-nav">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Extras</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="blog">Blog</a></li>
+                    <li><a href="extras">Extras</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main>
-        <div class="centered-text" style="font-family: 'SMW Superbig', sans-serif !important;">
-            THIS IS MARIOPUFF'S
-	<br>OFFICIAL WEBSITE
+        <div class="centered-text" style="font-family: 'Unbounded', sans-serif !important;">
+            THIS IS MARIOPUFF'S 
+            <br>OFFICIAL WEBSITE
+        </div>
+        <div class="content-below">
+            <h1>Welcome to Mariopuff's website built with GitHub Pages!</h1>
+            <p>In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas, and much more! Also I didn't code this myself, I used GPT 3.5 and 4o.</p>
+            <p>Anyway enjoy the content! If you want something to be added on the website, click this teeny-weeny button below to friend me on Discord!</p>
+        </div>
+
+        <a href="https://discord.com/users/832629415828914248" class="pill-button" target="_blank">
+            <span class="icon">💬</span>
+            Discord!
+        </a>
+<br>
+<br>
+            <div class="gradient-overlay"></div>
+        <div class="projects-container">
+            
+            <h1>Projects</h1>
+            <div class="card-container">
+                <div class="card card-1">
+                    <h2>Fulltimate Custom Night</h2>
+                    <p>Fulltimate Custom Night is a FNAF: UCN fangame, specifically of Ultimate Custom Night requiring the skills to be flexible, fast, and observant. This game is a combination of 
+                        Starmapo's Paint's Ultimate Custom Night and KamilFirma's Ultra Custom Night. The twist here is the fact that it's just not FNAF characters, it's EVERYTHING.</p>
+                </div>
+                <div class="card card-2">
+                    <h2>Card Title 2</h2>
+                    <p>This is some content for the second card. It can include text, images, and more.</p>
+                </div>
+                <div class="card card-3">
+                    <h2>Card Title 3</h2>
+                    <p>This is some content for the third card. It can include text, images, and more.</p>
+                </div>
+                <!-- Add more cards as needed -->
+            </div>
+            
         </div>
     </main>
 </body>

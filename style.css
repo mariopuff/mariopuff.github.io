@@ -3,7 +3,14 @@ body {
     margin: 0;
     padding: 0;
     color: #fff; /* Set default text color to white */
+    font-family: 'Gabarito', sans-serif; /* Set default font */
+    background: url('/assets/checkerboard.png') no-repeat center center;
+    background-size: cover;
+    position: relative; /* Ensure relative positioning */
+    min-height: 100vh; /* Ensure full viewport height */
 }
+
+
 
 /* Header and Navbar Styles */
 header {
@@ -66,56 +73,140 @@ header {
 }
 
 @font-face {
-    font-family: 'Unbounded';
-    src: url('fonts/Unbounded.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Gabarito';
     src: url('fonts/Gabarito.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-/* Apply Gabarito font to all <p> elements */
+/* Apply font to all <> elements */
 p {
     font-family: 'Gabarito', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
 }
 
-/* Background Image with Fade to Black */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/assets/websitethumbnail_v1.png') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -1;
+h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-    z-index: -1;
-}
+
 
 /* Centered Big Text */
 .centered-text {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjust the height dynamically */
+    width: 100%;
     text-align: center;
-    font-size: 48px; /* Adjust size as needed */
-    font-family: 'SMW Superbig', sans-serif !important;
+    font-weight: 900;
+    font-size: 60px; /* Adjust size as needed */
+    font-family: 'Unbounded', sans-serif !important;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden; /* Hide overflow */
+    margin-top: 0px; /* Adjust to add space for the header */
+}
+
+.content-below {
+    padding: 20px; /* Add padding around the container */
+    text-align: center;
+    margin-top: -35vh; /* Adjust this value to control the gap */
+}
+
+/* Projects Container */
+.projects-container {
+    padding: 20px; /* Add padding around the container */
+    margin-top: 20px; /* Add margin to separate from previous content */
+    background-color: #000; /* Background color starting from the projects section */
+    position: relative; /* Ensure content can stack above the gradient overlay */
+    z-index: 1; /* Place above the gradient overlay */
+}
+
+/* Pill Button */
+.pill-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px; /* Adjust for pill shape */
+    background-color: #161cbc; /* Button background color */
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    font-family: 'Gabarito', sans-serif; /* Button font family */
+    font-size: 16px; /* Button font size */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pill-button:hover {
+    background-color: #1d25ff; /* Darker background color on hover */
+}
+
+.icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+
+
+/* PROJECT CARDS */
+/* Scrollable container */
+.card-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 20px;
+    gap: 20px; /* Space between cards */
+    white-space: nowrap;
+}
+
+.card-container::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+}
+
+.card-container::-webkit-scrollbar-thumb {
+    background: #bc002d; /* Scrollbar color */
+    border-radius: 10px;
+}
+
+.card {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 20px;
+    width: 600px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Prevent overflowing content */
+}
+
+
+.card h2 {
+    font-family: 'Unbounded', sans-serif;
+    margin-top: 0;
+}
+
+.card p {
+    font-family: 'Gabarito', sans-serif;
+    word-wrap: break-word; /* Ensure automatic line break */
+    white-space: normal; /* Ensure normal white space handling */
+}
+
+.card-1 {
+    background-image: url('/assets/fcn-bg.jpg');
+    background-size: cover;
+
+}
+
+
+.card-2 {
+    background-image: url('/assets/card-image-2.jpg');
+    background-size: cover;
+}
+
+.card-3 {
+    background-image: url('/assets/card-image-3.jpg');
+    background-size: cover;
 }
