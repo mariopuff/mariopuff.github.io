@@ -125,8 +125,16 @@ h1 {
     z-index: 1; /* Place above the gradient overlay */
 }
 
+.friends-container {
+    padding: 20px; /* Add padding around the container */
+    margin-top: 0; /* Add margin to separate from previous content */
+    background-color: #000; /* Background color starting from the projects section */
+    position: relative; /* Ensure content can stack above the gradient overlay */
+    z-index: 1; /* Place above the gradient overlay */
+}
+
 /* Pill Button */
-.pill-button {
+.discord-friend-button {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 50px; /* Adjust for pill shape */
@@ -143,7 +151,7 @@ h1 {
     transform: translateX(-50%);
 }
 
-.pill-button:hover {
+.discord-friend-button:hover {
     background-color: #1d25ff; /* Darker background color on hover */
 }
 
@@ -151,62 +159,3 @@ h1 {
     margin-right: 5px; /* Space between icon and text */
 }
 
-
-
-/* PROJECT CARDS */
-/* Scrollable container */
-.card-container {
-    display: flex;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    padding: 20px;
-    gap: 20px; /* Space between cards */
-    white-space: nowrap;
-}
-
-.card-container::-webkit-scrollbar {
-    height: 8px; /* Height of the scrollbar */
-}
-
-.card-container::-webkit-scrollbar-thumb {
-    background: #bc002d; /* Scrollbar color */
-    border-radius: 10px;
-}
-
-.card {
-    display: inline-block;
-    border-radius: 10px;
-    padding: 20px;
-    width: 600px;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Prevent overflowing content */
-}
-
-
-.card h2 {
-    font-family: 'Unbounded', sans-serif;
-    margin-top: 0;
-}
-
-.card p {
-    font-family: 'Gabarito', sans-serif;
-    word-wrap: break-word; /* Ensure automatic line break */
-    white-space: normal; /* Ensure normal white space handling */
-}
-
-.card-1 {
-    background-image: url('/assets/fcn-bg.jpg');
-    background-size: cover;
-
-}
-
-
-.card-2 {
-    background-image: url('/assets/card-image-2.jpg');
-    background-size: cover;
-}
-
-.card-3 {
-    background-image: url('/assets/card-image-3.jpg');
-    background-size: cover;
-}
