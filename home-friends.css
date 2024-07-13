@@ -105,22 +105,32 @@
     background-color: rgba(188, 0, 45, 0.8);
 }
 
-.read-more-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 50px; /* Adjust for pill shape */
-    background-color: transparent; /* Button background color */
-    color: #fff; /* Button text color */
-    text-decoration: none; /* Remove underline */
-    font-family: 'Gabarito', sans-serif; /* Button font family */
-    font-size: 16px; /* Button font size */
-    border: 2px solid #fff; /* White border */
-    cursor: pointer; /* Cursor style */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
-    margin-top: 10px; /* Adjust top margin as needed */
-}
 
-.read-more-button:hover {
-    background-color: #fff; /* Darker background color on hover */
-    color: #000;
+@media (max-width: 768px) {
+    .card {
+        display: inline-block;
+        border-radius: 10px;
+        padding: 20px;
+        flex: 0 0 80%; /* Make cards narrower on smaller screens */
+        max-width: 80%; /* Ensure cards don't get too wide */
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden; /* Prevent overflowing content */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card h2 {
+        font-family: 'Unbounded', sans-serif;
+        margin-top: 0;
+        word-wrap: break-word; /* Ensure automatic line break */
+        white-space: normal; /* Ensure normal white space handling */
+        font-size: 20px;
+    }
+    
+    .card p {
+        font-family: 'Gabarito', sans-serif;
+        word-wrap: break-word; /* Ensure automatic line break */
+        white-space: normal; /* Ensure normal white space handling */
+        font-size: 15px;
+    }
 }

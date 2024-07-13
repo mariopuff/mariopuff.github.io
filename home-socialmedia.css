@@ -1,6 +1,6 @@
 /* PROJECT CARDS */
 /* Scrollable container */
-.projects-card-container {
+.social-card-container {
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
     padding: 20px;
@@ -9,11 +9,11 @@
     scroll-behavior: smooth;
 }
 
-.projects-card-container::-webkit-scrollbar {
+.social-card-container::-webkit-scrollbar {
     height: 8px; /* Height of the scrollbar */
 }
 
-.projects-card-container::-webkit-scrollbar-thumb {
+.social-card-container::-webkit-scrollbar-thumb {
     background: #bc002d; /* Scrollbar color */
     border-radius: 10px;
 }
@@ -42,41 +42,63 @@
     white-space: normal; /* Ensure normal white space handling */
 }
 
+.card h3 {
+    font-family: 'Unbounded', sans-serif;
+    margin-top: 0;
+    word-wrap: break-word; /* Ensure automatic line break */
+    white-space: normal; /* Ensure normal white space handling */
+    font-size: 18px;
+}
+
 .card p {
     font-family: 'Gabarito', sans-serif;
     word-wrap: break-word; /* Ensure automatic line break */
     white-space: normal; /* Ensure normal white space handling */
 }
 
-.project-1 {
-    background-image: url('/assets/fcn-bg2.png');
+.social-1 {
+    background-image: url('/assets/mario184-yt-bg.png');
     background-size: cover;
 
 }
 
-
-.project-2 {
-    background-image: url('/assets/jpitsbr-bg.jpg');
+.social-2 {
+    background-image: url('/assets/discord-social-bg.png');
     background-size: cover;
 }
 
-.project-3 {
-    background-image: url('/assets/gcn-bg.png');
+.social-3 {
+    background-image: url('/assets/spotify-social-bg.png');
     background-size: cover;
 }
 
-.project-4 {
-    background-image: url('/assets/superliminal-bg.jpg');
+.social-4 {
+    background-image: url('/assets/reddit-social-bg.png');
     background-size: cover;
 }
 
-.project-5 {
-    background-image: url('/assets/springlock-bg.png');
+.social-5 {
+    background-image: url('/assets/twitch-social-bg.png');
+    background-size: cover;
+}
+
+.social-6 {
+    background-image: url('/assets/steam-social-bg.png');
+    background-size: cover;
+}
+
+.social-7 {
+    background-image: url('/assets/formerlytwitter-social-bg.png');
+    background-size: cover;
+}
+
+.social-8 {
+    background-image: url('/assets/roblox-social-bg.png');
     background-size: cover;
 }
 
 /* Scroll Arrows */
-.projects-scroll-arrow {
+.social-scroll-arrow {
     position: absolute;
     top: 58%;
     transform: translateY(-50%);
@@ -94,19 +116,19 @@
     font-size: 30px;
 }
 
-.projects-scroll-arrow.left {
+.social-scroll-arrow.left {
     left: 10px;
 }
 
-.projects-scroll-arrow.right {
+.social-scroll-arrow.right {
     right: 10px;
 }
 
-.projects-scroll-arrow:hover {
+.social-scroll-arrow:hover {
     background-color: rgba(188, 0, 45, 0.8);
 }
 
-.read-more-button {
+.social-button {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 50px; /* Adjust for pill shape */
@@ -114,17 +136,18 @@
     color: #fff; /* Button text color */
     text-decoration: none; /* Remove underline */
     font-family: 'Gabarito', sans-serif; /* Button font family */
-    font-size: 16px; /* Button font size */
+    font-size: 15px; /* Button font size */
     border: 2px solid #fff; /* White border */
     cursor: pointer; /* Cursor style */
     transition: background-color 0.3s ease; /* Smooth background color transition */
     margin-top: 10px; /* Adjust top margin as needed */
 }
 
-.read-more-button:hover {
+.social-button:hover {
     background-color: #fff; /* Darker background color on hover */
     color: #000;
 }
+
 
 @media (max-width: 768px) {
     .card {
@@ -145,6 +168,14 @@
         word-wrap: break-word; /* Ensure automatic line break */
         white-space: normal; /* Ensure normal white space handling */
         font-size: 20px;
+    }
+
+    .card h3 {
+        font-family: 'Unbounded', sans-serif;
+        margin-top: 0;
+        word-wrap: break-word; /* Ensure automatic line break */
+        white-space: normal; /* Ensure normal white space handling */
+        font-size: 15px;
     }
     
     .card p {
