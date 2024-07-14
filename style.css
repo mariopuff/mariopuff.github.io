@@ -329,6 +329,29 @@ h3 {
 
 
 
+/* Footer Styles */
+footer {
+    background-color: #bc002d; /* Set footer background color */
+    padding: 20px;
+    text-align: center; /* Center align footer text */
+    color: #fff; /* Set footer text color */
+}
+
+.footer-connections {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between icons */
+    margin-bottom: 10px; /* Space between icons and footer text */
+}
+
+.footer-connections a img {
+    width: 40px; /* Set icon width */
+    height: 40px; /* Set icon height */
+}
+
+.icon-large {
+    filter: invert(93%) sepia(7%) saturate(0%) hue-rotate(90deg) brightness(107%) contrast(106%);
+}
 
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
@@ -382,4 +405,10 @@ h3 {
         font-size: 14px;
         padding: 8px 16px;
     }
+
+    .footer-connections a img {
+        width: 25px; /* Set icon width */
+        height: 25px; /* Set icon height */
+    }
+
 }
