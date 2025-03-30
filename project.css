@@ -1,0 +1,51 @@
+.center-text {
+    font-family: 'SMW Superbig', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 75px;
+    font-weight: 400;
+    margin-bottom: 0px;
+
+}
+
+.center-desc {
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.dotted-divider {
+    border-top: 7px dotted #fff; /* White dotted line */
+    width: 100%; /* Full width */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Ensures main content takes up remaining space */
+}
+
+p {
+    color: #fff; /* White text */
+    line-height: 1.4; /* Better readability */
+    margin: 15px 40px; /* Top & bottom: 15px, Left & right: 20px */
+    text-align: justify; /* Optional: Justifies text */
+}
+
+h1 {
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 800;
+}

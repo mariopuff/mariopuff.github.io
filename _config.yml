@@ -7,6 +7,9 @@ permalink: /:categories/:title/
 collections:
   pages:
     output: true
+  projects:
+    output: true
+    permalink: /projects/:name/
 
 markdown: kramdown
 theme: minima

@@ -461,3 +461,8 @@ footer {
 }
 
 }
+
+html, body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    width: 100%;
+  }

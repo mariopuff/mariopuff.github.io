@@ -1,0 +1,13 @@
+---
+layout: projects
+title: Projects
+permalink: /projects/
+---
+
+<div class="project-list">
+    {% for project in site.projects %}
+      <div class="project-card">
+        <h2><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2>
+      </div>
+    {% endfor %}
+  </div>
