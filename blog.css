@@ -20,6 +20,7 @@
     flex-direction: column; /* Ensures content stacks properly */
     height: auto; /* Let the card grow based on content */
     break-inside: avoid; /* Prevents posts from breaking across columns */
+    position: relative;
 }
 
 .blog-card:hover {
@@ -138,3 +139,9 @@ main {
     border-top: 10px dotted #fff; /* White dotted line */
     width: 100%; /* Full width */
 }
+
+.blog-card-link {
+    text-decoration: none;
+    color: inherit; /* Keeps text color consistent */
+    display: block; /* Makes the link cover the whole card */
+  }
