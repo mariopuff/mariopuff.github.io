@@ -1,9 +1,17 @@
 # _config.yml
-title: Your Site Title
-description: Your site description
+title: Mariopuff
+description: descroption
 baseurl: "" # Leave empty if you're deploying to the root
-url: "http://127.0.0.1:4000" # Only for local testing
+url: "http://127.0.0.1:5500" # Only for local testing
 permalink: /:categories/:title/
 collections:
   pages:
     output: true
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+
+liquid:
+  error_mode: warn

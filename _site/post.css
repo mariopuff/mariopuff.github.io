@@ -1,0 +1,59 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Ensures main content takes up remaining space */
+    padding-bottom: 300px;
+}
+
+/* Style for paragraph text */
+.content p {
+    color: #fff; /* White text */
+    line-height: 1.4; /* Better readability */
+    margin: 10px 20px; /* Top & bottom: 15px, Left & right: 20px */
+    text-align: justify; /* Optional: Justifies text */
+}
+
+.title {
+    padding-top: 10px;
+    margin: 15px 20px; /* Top & bottom: 15px, Left & right: 20px */
+    text-align: left; /* Optional: Justifies text */
+    font-family: 'NinNewMario', sans-serif;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 0.8;
+    color: white;
+    z-index: 2;
+}
+
+.date {
+    margin: 15px 20px; /* Top & bottom: 15px, Left & right: 20px */
+    text-align: justify; /* Optional: Justifies text */
+    font-size: 40px;
+}
+
+.dotted-divider {
+    border-top: 2px dotted #fff; /* White dotted line */
+    margin: 20px 0; /* Spacing above and below */
+    width: 100%; /* Full width */
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Adjust height */
+    overflow: hidden;
+}
+
+.banner-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%); /* Darkens the image */
+    z-index: 1;
+}

@@ -1,30 +1,140 @@
-.blog-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.blog-container {
+    display: grid;
+    gap: 15px;
     padding: 20px;
-}
-
-.blog-post {
-    background: #f4f4f4;
+    background: rgba(0, 0, 0, 0); /* Transparent background */
     border-radius: 10px;
-    margin: 10px;
-    padding: 15px;
-    width: calc(33.333% - 20px); /* 3 columns */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    grid-auto-rows: auto; /* Dynamic height based on content */
+    align-items: start;
 }
 
-.blog-post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.blog-card {
+    background: black;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%; /* Ensures cards fit within the grid */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Ensures content stacks properly */
+    height: auto; /* Let the card grow based on content */
+    break-inside: avoid; /* Prevents posts from breaking across columns */
 }
 
-.blog-post h2 a {
+.blog-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Hover effect */
+    background: #bc002d;
+}
+
+.blog-card:active {
+    transform: translateY(5px); /* Moves card down */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.blog-card h2 {
+    margin-top: 0;
+    font-family: 'NinNewMario', sans-serif;
+    word-wrap: break-word; /* Ensure automatic line break */
+    white-space: normal; /* Ensure normal white space handling */
+    color: #fff;
+    font-weight: 400;
+    font-size: 36px;
+}
+
+.blog-card h2 a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Keep title white */
+    cursor: pointer;
+}
+
+.blog-card h2 a:hover {
+    text-decoration: none; /* No underline on hover */
+}
+
+.date {
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    font-style: italic;
+    margin-top: -30px;
+}
+
+.excerpt {
+    color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-grow: 1; /* Ensures the text expands properly */
+    overflow: hidden; /* Prevents text from going outside */
+    display: block; /* Ensure it's treated as a block element */
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .blog-container {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
+
+/* Scrollbar Styling */
+.blog-container::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Ensures main content takes up remaining space */
+}
+
+.blog-banner {
+    width: 100%;
+    height: 150px; /* Adjust height as needed */
+    overflow: hidden;
+    border-radius: 15px 15px 15px 15px; /* Rounded corners on top */
+}
+
+.blog-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card h2 {
+    margin-top: 10px;
+    font-family: 'NinNewMario', sans-serif;
+    color: #fff;
     text-decoration: none;
-    color: #333;
 }
 
-.blog-post p {
-    color: #666;
+.center-text {
+    font-family: 'SMW Superbig', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 400;
+    margin-bottom: -20px;
+
+}
+
+.center-desc {
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.dotted-divider {
+    border-top: 10px dotted #fff; /* White dotted line */
+    width: 100%; /* Full width */
 }
