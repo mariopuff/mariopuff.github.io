@@ -16,19 +16,19 @@
         <nav class="center-nav">
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="#">Projects</a></li>
+                <li><a href="/projects">Projects</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/extras">Extras</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<body>
+<body class="project-bg" style="background-image: url('{{ page.background_image }}');">
 <h1 class="center-text">{{ page.title }}</h1></div>
 <h2 class="center-desc">{{ page.description }}</h2></div>
 <div class="dotted-divider"></div>
     <!-- Main content -->
-    <main>
+    <main style="margin-bottom: 300px;">
         {{ content }}
     </main>
 
@@ -36,15 +36,15 @@
     <footer>
         <div class="footer-connections">
             <a href="https://www.youtube.com/@mariopuff184"><img class="icon-large" src="/assets/yt-footer.svg" alt="icon"></a>
-            <a href="https://discord.com/users/832629415828914248"><img class="icon-large" src="/assets/dsc-footer.svg" alt="icon"></a>
+            <a href="https://discord.com/users/913646560838041660"><img class="icon-large" src="/assets/dsc-footer.svg" alt="icon"></a>
             <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl"><img class="icon-large" src="/assets/spotify-footer.svg" alt="icon"></a>
             <a href="https://www.reddit.com/user/SJM184/"><img class="icon-large" src="/assets/reddit-footer.svg" alt="icon"></a>
             <a href="https://twitch.tv/mariopuff"><img class="icon-large" src="/assets/twitch-footer.svg" alt="icon"></a>
-            <a href="https://steamcommunity.com/id/mariopuff/"><img class="icon-large" src="/assets/steam-footer.svg" alt="icon"></a>
+            <a href="https://steamcommunity.com/id/hallwayheat/"><img class="icon-large" src="/assets/steam-footer.svg" alt="icon"></a>
             <a href="https://x.com/toybunny_"><img class="icon-large" src="/assets/formerlytwitter-footer.svg" alt="icon"></a>
             <a href="https://www.roblox.com/users/6220154646/profile"><img class="icon-large" src="/assets/roblox-footer.svg" alt="icon"></a>
         </div>
-        <p>&copy; 2025 liminalchopsoups</p>
+        <p class="footer-text">&copy; 2025 liminalchopsoups</p>
     </footer>
 </body>
 </html>

@@ -6,6 +6,7 @@
     font-size: 75px;
     font-weight: 400;
     margin-bottom: 0px;
+    margin-top: 50px;
 
 }
 
@@ -46,6 +47,245 @@ h1 {
     color: #fff;
     text-decoration: none;
     text-align: left;
+    font-size: 40px;
+    margin: 15px 40px; /* Top & bottom: 15px, Left & right: 20px */
+}
+
+h2 {
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: left;
+    font-size: 30px;
+    margin: 15px 40px; /* Top & bottom: 15px, Left & right: 20px */
+}
+
+h3 {
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-align: left;
+    font-size: 30px;
+    margin: 15px 40px; /* Top & bottom: 15px, Left & right: 20px */
+}
+
+.project-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Background moves with scroll */
+}
+
+.footer-text {
+    text-align: center;
+}
+
+
+
+
+.timeline-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll-left 60s linear infinite;
+  width: max-content;
+}
+
+.timeline-wrapper:hover .scroll-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.event {
+  flex-shrink: 0;
+}
+
+.event-box {
+  background-color: #bc002d;
+  color: #fff;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 200px;
+  height: 300px;
+  text-align: left;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+.event-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.date {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-family: 'NinNewMario', sans-serif !important;
+  line-height: 0.9;
+}
+
+.event-box p {
     font-size: 20px;
-    font-weight: 800;
+    line-height: 1;
+    text-align: left;
+    margin: inherit;
+    margin-top: 10px;
+}
+
+.pill-button-fcn-scratch {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px; /* Adjust for pill shape */
+    background-color: #bc002d;
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    font-family: 'Din Demi 2014', sans-serif; /* Button font family */
+    font-size: 16px; /* Button font size */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0; 
+
+}
+
+.pill-button-fcn-scratch:hover {
+    background-color: #F8A839;
+}
+
+.pill-button-fcn-turbowarp {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px; /* Adjust for pill shape */
+    background-color: #bc002d;
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    font-family: 'Din Demi 2014', sans-serif; /* Button font family */
+    font-size: 16px; /* Button font size */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0; 
+
+}
+
+.pill-button-fcn-turbowarp:hover {
+    background-color: #ff4c4c;
+}
+
+.button-wrapper {
+    justify-content: center;
+    gap: 10px; /* space between buttons */
+    margin-top: 20px;
+}
+
+div {
+    display: grid;
+    unicode-bidi: isolate;
+}
+
+.pill-button-fcn-subsub {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px; /* Adjust for pill shape */
+  background-color: #bc002d;
+  color: #fff; /* Button text color */
+  text-decoration: none; /* Remove underline */
+  font-family: 'Din Demi 2014', sans-serif; /* Button font family */
+  font-size: 16px; /* Button font size */
+  border: none; /* Remove border */
+  cursor: pointer; /* Cursor style */
+  transition: color 0.3s ease;
+  transition: background-color,color 0.3s ease;/* Smooth background color transition */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0; 
+}
+
+.pill-button-fcn-subsub:hover {
+  background-color: #e67e22;
+  color: #000;
+}
+
+.pill-button-fcn-gamejolt {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px; /* Adjust for pill shape */
+  background-color: #bc002d;
+  color: #fff; /* Button text color */
+  text-decoration: none; /* Remove underline */
+  font-family: 'Din Demi 2014', sans-serif; /* Button font family */
+  font-size: 16px; /* Button font size */
+  border: none; /* Remove border */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0; 
+
+}
+
+.pill-button-fcn-gamejolt:hover {
+  background-color: #2f7f6f;
+}
+
+.link-text {
+  font-family: 'NinNewMario', sans-serif !important;
+  text-align: center;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;  /* center horizontally */
+  align-items: center;      /* center vertically */
+  margin-top: 100px;
+}
+
+.pill-button-fcn-sheet {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px; /* Adjust for pill shape */
+  background-color: #bc002d;
+  color: #fff; /* Button text color */
+  text-decoration: none; /* Remove underline */
+  font-family: 'Din Demi 2014', sans-serif; /* Button font family */
+  font-size: 16px; /* Button font size */
+  border: none; /* Remove border */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0; 
+
+}
+
+.pill-button-fcn-sheet:hover {
+  background-color: #00ac47;
 }

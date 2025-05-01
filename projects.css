@@ -33,3 +33,88 @@ html, body {
 main {
     flex: 1; /* Ensures main content takes up remaining space */
 }
+
+/* Scrollbar Styling */
+.project-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    margin-bottom: 300px;
+}
+
+.project-card-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+}
+
+.project-card {
+    width: 75%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 0 auto; /* centers horizontally */
+    align-items: center;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.project-card:active {
+    transform: translateY(4px); /* Move the card down when clicked */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow to give the pressed effect */
+}
+
+.project-card h2 {
+    font-family: 'NinNewMario', sans-serif;
+    color: #fff;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.project-card p {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 20px 20px 20px;
+    font-family: 'DIN Demi 2014', sans-serif;
+    color: #fff;
+    padding-bottom: 25px;
+}
+
+.footer-text {
+    text-align: center !important;
+    font-size: 18px;
+}

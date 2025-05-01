@@ -75,6 +75,11 @@
     background-size: cover;
 }
 
+.project-6 {
+    background-image: url('/assets/kanye.jpg');
+    background-size: cover;
+}
+
 /* Scroll Arrows */
 .projects-scroll-arrow {
     position: absolute;

@@ -10,6 +10,8 @@ collections:
   projects:
     output: true
     permalink: /projects/:name/
+  posts:
+    permalink: /post/:title/
 
 markdown: kramdown
 theme: minima
@@ -19,5 +21,13 @@ plugins:
 
 liquid:
   error_mode: warn
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      permalink: "/:path/"
+
 
 # Force rebuild
