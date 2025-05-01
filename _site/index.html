@@ -3,274 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mariopuff</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="home-projects.css">
-    <link rel="stylesheet" href="home-friends.css">
-    <link rel="stylesheet" href="home-socialmedia.css">
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
-</style>
 <body>
+    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="left-text menu-toggle" aria-label="Toggle menu">
-                <p>mariopuff</p>
-            </div>
-            <nav class="center-nav">
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="projects">Projects</a></li>
-                    <li><a href="blog">Blog</a></li>
-                    <li><a href="extras">Extras</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Mariopuff</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/extras">Extras</a></li>
+            </ul>
+        </nav>
     </header>
+
+    <!-- Main content -->
     <main>
-        <div class="centered-text" style="font-family: 'NinNewMario', sans-serif !important;">
-            Mariopuff, game maker,<br>Formula One fan, and<br>casual chatter
-        </div>
-        <div class="content-below">
-            <h1 id="welcome-header">Welcome to Mariopuff's website <br>built with GitHub Pages!</h1>
-            <p id="first-paragraph">In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas,<br> and much more! Also I didn't code this myself, I used GPT 3.5 and 4o.</p>
-            <p id="second-paragraph">Anyway enjoy the content! If you want something to be added on the website, click this<br> teeny-weeny button below to friend me on Discord!</p>
-        </div>
-        
-        <script>
-            function updateContent() {
-                const headerElement = document.getElementById('welcome-header');
-                const firstParagraph = document.getElementById('first-paragraph');
-                const secondParagraph = document.getElementById('second-paragraph');
-        
-                if (window.innerWidth <= 768) {
-                    // For mobile: Change the line breaks as needed
-                    headerElement.innerHTML = "Welcome to Mariopuff's website built with GitHub Pages!";
-                    firstParagraph.innerHTML = "In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas, and much more!";
-                    secondParagraph.innerHTML = "Anyway enjoy the content! If you want something to be added on the website, click this teeny-weeny button below to friend me on Discord!";
-                } else {
-                    // For desktop: Keep the line breaks
-                    headerElement.innerHTML = "Welcome to Mariopuff's website <br>built with GitHub Pages!";
-                    firstParagraph.innerHTML = "In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas,<br> and much more! Also I didn't code this myself, I used GPT 3.5 and 4o.";
-                    secondParagraph.innerHTML = "Anyway enjoy the content! If you want something to be added on the website, click this<br> teeny-weeny button below to friend me on Discord!";
-                }
-            }
-        
-            // Call the function on page load
-            window.onload = updateContent;
-        
-            // Add an event listener to update content on resize
-            window.onresize = updateContent;
-        </script>
-        
-        
+        <p>Hello, world! The current year is 2025.</p>
 
-        <a href="https://discord.com/users/913646560838041660" class="discord-friend-button" target="_blank">
-            <span class="icon">💬</span>
-            Discord!
-        </a>
-<br>
-<br>
-        <div class="gradient-overlay"></div>
-        <!-- <div class="projects-container">
-
-            <h1>Featured Projects</h1>
-            <div class="projects-scroll-arrow left">&lt;</div>
-            <div class="projects-card-container">
-                <div class="card project-1">
-                    <h2>Fulltimate Custom Night</h2>
-                    <p>Fulltimate Custom Night is a FNAF fangame, specifically of Ultimate Custom Night requiring the skills to be flexible, fast, and observant. This game is a combination of 
-                        Starmapo's Paint's Ultimate Custom Night and KamilFirma's Ultra Custom Night. The twist here is the fact that it's just not FNAF characters, it's EVERYTHING.</p>
-                        <a href="projects/fcn/" class="read-more-button">Read More</a>
-                </div>
-
-                <div class="card project-2">
-                    <h2>The Japan-Italy-Siberia Minecraft SMP</h2>
-                    <p>The Japan-Italy-Siberia Minecraft SMP is a... Minecraft server where people (as countries) play the game together! Previously called Japanese-Italian Minecraft SMP, this 
-                        server was founded by Mario_184 and co-owned by UN4YA and 4unduck.</p>
-                    <a href="projects" class="read-more-button">Read More</a>
-                </div>
-
-                <div class="card project-3">
-                    <h2>Gender Custom Night</h2>
-                    <p>Probably a troll FNAF: UCN fangame involving identified genders as roster characters. Idea was came up in June 2024.</p>
-                    <a href="projects" class="read-more-button">Read More</a>
-                </div>
-
-                <div class="card project-4">
-                    <h2>Superliminal for Roblox</h2>
-                    <p>Full recreation of the puzzle game "Superliminal" in Roblox Studio. Need to learn how to use the engine before coding it though.</p>
-                    <a href="projects" class="read-more-button">Read More</a>
-                </div>
-
-                <div class="card project-5">
-                    <h2>The Return to Fredbear and Springbonnie: Reboots</h2>
-                    <p>Remasters of the first FNAF "games" I made on Scratch. Actually adding gameplay this time with a lot more function instead of animatronics doing nothing unless you click them, only then they will deliver a jumpscare.</p>
-                    <a href="projects" class="read-more-button">Read More</a>
-                </div>
-
-                <div class="card project-6">
-                    <h2 class="card-6-h2">That's not all!</h2>
-                    <p class="card-6-p">Want to see more? Head to Mariopuff's Projects!</p>
-                </div>
-
-            </div>
-            <div class="projects-scroll-arrow right">&gt;</div>
-        </div>
-        <script src="scroll-projects.js"></script>    -->
-        
-        
-        <div class="friends-container">
-            <h1>Friends</h1>
-            <div class="friends-scroll-arrow left">&lt;</div>
-            <div class="friends-card-container">
-                <div class="card friend-1">
-                    <h2>UN4YA</h2>
-                    <p>The first friend I met when it try to find someone non-OG. Although I found him through a coding Discord server, he doesn't actually know how to code. 
-                        I think he was just invited there for nothing. He doesn't have any skill in FNAF-related games, but he masters the gameplay of <i>Minecraft</i>. Yeah, we play 
-                        it in the free time. And the surprising thing is he can have full diamond armor like a week from a season release. What a speedrunner, slow down man!</p>
-                </div>
-
-                <div class="card friend-2">
-                    <h2>interseer [formerly: 4unduck]</h2>
-                    <p>The unexpected friend I made when I was searching through the official Aternos server. Unlike beepybunny, he lives in the Siberian area near Japan. 
-                        That tells he is closer to me than beepybunny is. We both knew <i>Jackbox Games</i> when we first met and now he joins UN4YA and I on Minecraft. Aside from 
-                        the game, we three also played the first <i>You Don't Know Jack</i> game online. Additionally, I also got a lot of <i>Lethal Company</i> stuff that I wanted to learn from him.
-                        <br>
-                        <br>
-                        Russians really like <i>Lethal Company</i>, huh?</p>
-                </div>
-
-                <div class="card friend-3">
-                    <h2>Seft</h2>
-                    <p>One of the originals. Not sure when and where I first met them, but they have joined me on a lot of stuff. Non-Binary, so watch out when you use pronouns against them.</p>
-                </div>
-
-                <div class="card friend-4">
-                    <h2>beepybunny</h2>
-                    <p>One of the originals in my FNAF-Discord experience. I actually didn't talk to him since that time until the seventh day of April 2024. Before that he made a FNAF 2 remake 
-                        in Retrostudio for multiple players, and before that he made his UCN fangame, <i>Ultimate Survival Night</i>. He also mentions that he lives in the Siberian area near Mongolia. 
-                        Like 4unduck, he really likes <i>Lethal Company.</i></p>
-                </div>
-
-            </div>
-            <div class="friends-scroll-arrow right">&gt;</div>
-        </div>
-        <script src="scroll-friends.js"></script> 
-        
-            <div class="social-media-container">
-            <h1>Social Media</h1>
-            <div class="social-scroll-arrow left">&lt;</div>
-            <div class="social-card-container">
-                <div class="card social-1">
-                    <h2>YouTube</h2>
-                    <h3>Mario_184</h3>
-                    <p>This is my main channel created in November 2021.
-                        I post random content, but you will find gaming
-                        most common. I play FNAF fangames, emulated
-                        Mario games, and more if you guys want me to play
-                        your recommended games.
-                    </p>
-                    <h3>Mariopuff & Friends</h3>
-                    <p>A seperate channel where I play games with my friends!
-                        We have a lot of fun together, and the nicest thing is we are open
-                        to invite one or two of you guys to hop in with us!
-                    </p>
-                    <a href="https://www.youtube.com/@mariopuff184/" class="social-button" target="_blank"><span class="icon">↗</span>Mario_184</a><br>
-                    <a href="https://www.youtube.com/@mariopuffandhomies/" class="social-button" target="_blank"><span class="icon">↗</span>Mariopuff & Friends</a>
-                </div>
-
-                <div class="card social-2">
-                    <h2>Discord</h2>
-                    <p>Out of all the social networking sites, Discord ranks top 2 on my usage list.
-                        I use it to check on my friends, post funny memes, stream funny games, participate
-                        in events, and more. Why don't you find me on Discord? DMs open.
-                    </p>
-                    <a href="https://discord.com/users/913646560838041660" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff</a>
-                </div>
-
-                <div class="card social-3">
-                    <h2>Spotify</h2>
-                    <p>I listen to songs. So maybe you could reach out to me and share what your music taste is.
-                    I <b>might</b> be addicted to it after you tell me. Would love to find out about other
-                people's vibes. yay!</p>
-                    <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff!</a>
-                </div>
-
-                <div class="card social-4">
-                    <h2>Reddit</h2>
-                    <p>I rarely post anything on Reddit, but when I do, it's probably stupid crap nobody
-                        cares about. I would appreciate it if you find me here, but expect me to check Reddit
-                        every two weeks.
-                    </p>
-                    <a href="https://www.reddit.com/user/SJM184/" class="social-button" target="_blank"><span class="icon">↗</span>SJM184</a>
-                </div>
-
-                <div class="card social-5">
-                    <h2>Twitch</h2>
-                    <p>I make games. I play games. I stream games. However, same as Reddit, I don't stream very often.
-                    Unlike Reddit, I sometimes do go here to see other people stream, for example our good friend CaseOh.</p>
-                    <a href="https://www.twitch.tv/mariopuff" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff</a>
-                </div>
-
-                <div class="card social-6">
-                    <h2>Steam</h2>
-                    <p>I play games. I make games. I currently don't have access to Steam right now, so I'm only available on web.
-                        Currently, I'm at level 0, but I might buy games in the future. Who knows?
-                    </p>
-                    <a href="https://steamcommunity.com/id/hallwayheat/" class="social-button" target="_blank"><span class="icon">↗</span>hallwayheat</a>
-                </div>
-
-                <div class="card social-7">
-                    <h2>X (Formerly Twitter)</h2>
-                    <p>This is my Formerly Twitter account. Nothing special, just stupid posts. I also don't go there
-                        frequently, so yeah. Also I only accept <b>real</b> followers, not those accounts which go
-                        follow random people.
-                    </p>
-                    <a href="https://x.com/toybunny_" class="social-button" target="_blank"><span class="icon">↗</span>toybunny_</a>
-                </div>
-
-                <div class="card social-8">
-                    <h2>Roblox</h2>
-                    <p>I have Roblox, like every normal kid. I play FNAF 2: Reimagined, Superliminal, and DOORS. Would love
-                    it if you friend me. My current goal is 20 friends. 😋</p>
-                    <a href="https://www.roblox.com/users/6220154646/profile" class="social-button" target="_blank"><span class="icon">↗</span>liminalsoups</a>
-                </div>
-
-            </div>
-            <div class="social-scroll-arrow right">&gt;</div>
-        </div>
-        <script src="scroll-social.js"></script> 
     </main>
-    <script src="mobile-menu.js"></script> 
 
-
-    <script>
-        window.onscroll = function() {
-            const header = document.querySelector('header');
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                header.classList.add('scrolled'); // Add class on scroll
-            } else {
-                header.classList.remove('scrolled'); // Remove class when at top
-            }
-        };
-    </script>
-
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mariopuff</p>
+    </footer>
 </body>
-<footer>
-    <div class="footer-connections">
-        <a href="https://www.youtube.com/@mariopuff184"><img class="icon-large" src="/assets/yt-footer.svg" alt="icon"></a>
-        <a href="https://discord.com/users/913646560838041660"><img class="icon-large" src="/assets/dsc-footer.svg" alt="icon"></a>
-        <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl"><img class="icon-large" src="/assets/spotify-footer.svg" alt="icon"></a>
-        <a href="https://www.reddit.com/user/SJM184/"><img class="icon-large" src="/assets/reddit-footer.svg" alt="icon"></a>
-        <a href="https://twitch.tv/mariopuff"><img class="icon-large" src="/assets/twitch-footer.svg" alt="icon"></a>
-        <a href="https://steamcommunity.com/id/hallwayheat/"><img class="icon-large" src="/assets/steam-footer.svg" alt="icon"></a>
-        <a href="https://x.com/toybunny_"><img class="icon-large" src="/assets/formerlytwitter-footer.svg" alt="icon"></a>
-        <a href="https://www.roblox.com/users/6220154646/profile"><img class="icon-large" src="/assets/roblox-footer.svg" alt="icon"></a>
-    </div>
-    <p>&copy; 2025 liminalchopsoups</p>
-</footer>
 </html>
