@@ -35,7 +35,7 @@ Fulltimate Custom Night was created with love, care, and ambition in December 11
     <div class="event">
         <div class="event-box">
           <span class="date">December 11, 2023</span>
-          <p><i>Fulltimate Custom Night</i> is launch to Scratch, with the publication of FCN's first ever official version, <i>v0.0.1</i>.</p>
+          <p><i>Fulltimate Custom Night</i> is launched to Scratch, with the publication of FCN's first ever official version, <i>v0.0.1</i>.</p>
         </div>
       </div>
       <div class="event">
@@ -111,7 +111,7 @@ Fulltimate Custom Night was created with love, care, and ambition in December 11
     <div class="event">
         <div class="event-box">
           <span class="date">December 11, 2023</span>
-          <p><i>Fulltimate Custom Night</i> is launch to Scratch, with the publication of FCN's first ever official version, <i>v0.0.1</i>.</p>
+          <p><i>Fulltimate Custom Night</i> is launched to Scratch, with the publication of FCN's first ever official version, <i>v0.0.1</i>.</p>
         </div>
       </div>
       <div class="event">
