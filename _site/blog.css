@@ -14,7 +14,7 @@
     border-radius: 15px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 100%; /* Ensures cards fit within the grid */
+    width: 92%; /* Ensures cards fit within the grid */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     display: flex;
     flex-direction: column; /* Ensures content stacks properly */
@@ -48,6 +48,10 @@
     text-decoration: none; /* Remove underline */
     color: white; /* Keep title white */
     cursor: pointer;
+}
+
+.blog-card p {
+    word-break: break-word;
 }
 
 .blog-card h2 a:hover {
@@ -144,4 +148,8 @@ main {
     text-decoration: none;
     color: inherit; /* Keeps text color consistent */
     display: block; /* Makes the link cover the whole card */
+  }
+
+  main {
+    margin-bottom: 250px;
   }

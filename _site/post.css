@@ -57,3 +57,14 @@ main {
     filter: brightness(50%); /* Darkens the image */
     z-index: 1;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #fff; /* Set default text color to white */
+    font-family: 'Din Demi 2014', sans-serif; /* Set default font */
+    background: url('/assets/checkerboard-dark.png') no-repeat center center;
+    background-size: cover;
+    position: relative; /* Ensure relative positioning */
+    min-height: 100vh; /* Ensure full viewport height */
+}

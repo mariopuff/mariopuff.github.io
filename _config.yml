@@ -29,5 +29,4 @@ defaults:
       layout: "default"
       permalink: "/:path/"
 
-
 # Force rebuild
