@@ -6,938 +6,276 @@ title: mariopuff
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mariopuff</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --red: #bc002d;
-      --red-glow: rgba(188,0,45,0.18);
-      --bg: #090909;
-      --surface: #111111;
-      --surface2: #161616;
-      --white: #f4f0eb;
-      --hairline: #222222;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'Unbounded', sans-serif;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ── CUSTOM CURSOR ── */
-    #cursor {
-      position: fixed; width: 10px; height: 10px;
-      background: var(--red); border-radius: 50%;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .15s, height .15s, background .2s;
-    }
-    #cursor-ring {
-      position: fixed; width: 40px; height: 40px;
-      border: 1.5px solid var(--red); border-radius: 50%;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: left .1s ease, top .1s ease, width .2s, height .2s;
-      opacity: .45;
-    }
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor { width: 22px; height: 22px; background: var(--red); }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 64px; height: 64px; opacity: .18; }
-
-    /* ── NOISE OVERLAY ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9990;
-    }
-
-    /* ── INVERTED NAV (mix-blend-mode: difference) ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      mix-blend-mode: difference;
-      pointer-events: none;
-    }
-    nav * { pointer-events: all; }
-
-    .nav-logo {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-      color: var(--white);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .nav-links a { color: var(--white); transition: opacity .2s; }
-    .nav-links a:hover { opacity: .5; }
-
-    .nav-discord {
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--white);
-      border: 1.5px solid var(--white);
-      padding: 0.5rem 1.1rem;
-      border-radius: 100px;
-      transition: opacity .2s;
-    }
-    .nav-discord:hover { opacity: .6; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--hairline);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Subtle red grid */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(188,0,45,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(188,0,45,.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-
-    /* Bleeding ghost text — pushed to back, behind everything */
-    .hero-bleed {
-      position: absolute;
-      bottom: -0.08em;
-      left: -0.04em;
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(20vw, 25vw, 30vw);
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(188,0,45,0.08);
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
-      z-index: 0;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 8rem 3rem 3.5rem 3rem;
-      border-right: 1px solid var(--hairline);
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
-      font-size: 0.55rem;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.4rem;
-      animation: fadeUp .6s ease .1s both;
-    }
-
-    .hero-name {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3.5rem, 7.5vw, 8rem);
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      color: var(--white);
-      animation: fadeUp .7s ease .25s both;
-    }
-    .hero-name .accent { color: var(--red); }
-
-    .hero-desc {
-      margin-top: 2rem;
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--white);
-      line-height: 1.7;
-      max-width: 360px;
-      animation: fadeUp .6s ease .4s both;
-    }
-
-    .hero-cta {
-      margin-top: 2.5rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      padding: 0.85rem 1.8rem;
-      border-radius: 100px;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      width: fit-content;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      animation: fadeUp .6s ease .55s both;
-    }
-    .hero-cta:hover {
-      background: #e0003a;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px var(--red-glow);
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 8rem 3rem 3.5rem 3rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-stats-panel {
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: 20px;
-      padding: 0 2rem;
-      overflow: hidden;
-    }
-
-    .hero-stat {
-      border-top: 1px solid var(--hairline);
-      padding: 1.1rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background .15s;
-    }
-    .hero-stat:first-child { border-top: none; }
-    .hero-stat:hover { margin: 0 -2rem; padding: 1.1rem 2rem; background: #1e1e1e; }
-
-    .hero-stat-label {
-      font-size: 0.5rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #555;
-    }
-    .hero-stat-value {
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
-    }
-
-    /* ── SCROLL HINT ── */
-    .scroll-hint {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      writing-mode: vertical-rl;
-      font-size: 0.5rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #444;
-      display: flex; align-items: center; gap: 0.6rem;
-      z-index: 50;
-      animation: fadeUp .5s ease 1.2s both;
-    }
-    .scroll-hint::before { content: ''; width: 1px; height: 40px; background: var(--hairline); }
-
-    /* ── BIG TYPE DIVIDERS ── */
-    .type-divider {
-      overflow: hidden;
-      border-bottom: 1px solid var(--hairline);
-      padding: 2.5rem 3rem 0;
-      background: var(--surface);
-    }
-    .type-divider-word {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(14vw, 18vw, 22vw);
-      line-height: 0.85;
-      letter-spacing: -0.04em;
-      color: var(--white);
-      display: block;
-      transform: translateY(8%);
-    }
-    .type-divider.red-div { background: var(--red); }
-    .type-divider.red-div .type-divider-word { color: var(--white); }
-
-    /* ── SECTION STRUCTURE ── */
-    .section-wrap {
-      padding: 5rem 3rem;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .section-title {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
-    .section-num {
-      font-size: 0.55rem;
-      font-weight: 500;
-      color: var(--red);
-      letter-spacing: 0.25em;
-    }
-
-    /* ── FRIENDS ── */
-    .friends-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .friend-card {
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: 20px;
-      padding: 2rem 1.8rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform .3s, border-color .3s, box-shadow .3s, background .2s;
-      cursor: none;
-    }
-    .friend-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 20px;
-      background: radial-gradient(circle at 0% 0%, rgba(188,0,45,.07), transparent 70%);
-      opacity: 0; transition: opacity .3s;
-    }
-    .friend-card:hover { transform: translateY(-6px); border-color: rgba(188,0,45,.4); box-shadow: 0 20px 60px var(--red-glow); }
-    .friend-card:hover::before { opacity: 1; }
-
-    .friend-num {
-      font-size: 0.5rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1rem;
-    }
-
-    .friend-name {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .friend-bio {
-      font-size: 0.68rem;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--white);
-    }
-
-    /* ── SOCIAL ── */
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .social-card {
-      background: var(--surface2);
-      border: 1px solid var(--hairline);
-      border-radius: 20px;
-      padding: 1.8rem 1.6rem;
-      cursor: none;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .social-card::before {
-      content: '';
-      position: absolute; inset: 0; border-radius: 20px;
-      background: radial-gradient(circle at 0% 0%, rgba(188,0,45,.07), transparent 70%);
-      opacity: 0; transition: opacity .3s;
-    }
-    .social-card:hover { transform: translateY(-6px); border-color: rgba(188,0,45,.4); box-shadow: 0 16px 48px var(--red-glow); }
-    .social-card:hover::before { opacity: 1; }
-
-    .social-platform {
-      font-size: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 0.5rem;
-    }
-
-    .social-name {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 0.9rem;
-    }
-
-    .social-desc {
-      font-size: 0.65rem;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--white);
-      margin-bottom: 1.2rem;
-    }
-
-    .social-link {
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #555;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: color .2s;
-    }
-    .social-link::before { content: '↗'; color: var(--red); }
-    .social-link:hover { color: var(--white); }
-
-    /* ── CONTENT (BLOG / PROJECTS) ── */
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .content-card {
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: 24px;
-      padding: 3.5rem 3rem;
-      cursor: none;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .content-card::before {
-      content: '';
-      position: absolute; inset: 0; border-radius: 24px;
-      background: radial-gradient(circle at 0% 100%, rgba(188,0,45,.07), transparent 70%);
-      opacity: 0; transition: opacity .3s;
-    }
-    .content-card:hover { transform: translateY(-8px); border-color: rgba(188,0,45,.4); box-shadow: 0 24px 80px var(--red-glow); }
-    .content-card:hover::before { opacity: 1; }
-
-    .content-big-num {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(5rem, 8vw, 9rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--hairline);
-      margin-bottom: 1.5rem;
-      transition: -webkit-text-stroke-color .3s;
-    }
-    .content-card:hover .content-big-num { -webkit-text-stroke-color: rgba(188,0,45,.3); }
-
-    .content-label {
-      font-size: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 0.8rem;
-    }
-
-    .content-title {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2rem, 3.5vw, 3.5rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 1.2rem;
-    }
-
-    .content-desc {
-      font-size: 0.7rem;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .content-link {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.55rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--red);
-      color: var(--white);
-      padding: 0.75rem 1.5rem;
-      border-radius: 100px;
-      transition: background .2s, transform .2s, box-shadow .2s;
-    }
-    .content-link:hover { background: #e0003a; transform: translateY(-2px); box-shadow: 0 8px 24px var(--red-glow); }
-
-    /* ── CTA BAND ── */
-    .cta-band {
-      padding: 6rem 3rem;
-      border-bottom: 1px solid var(--hairline);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 3rem;
-      background: var(--red);
-      border-radius: 0;
-    }
-
-    .cta-band-text {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      letter-spacing: -0.04em;
-      line-height: 0.92;
-      color: var(--white);
-    }
-
-    .cta-band-text .dim { opacity: .5; }
-
-    .cta-band-btn {
-      flex-shrink: 0;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--white);
-      color: var(--red);
-      padding: 1rem 2.5rem;
-      border-radius: 100px;
-      display: inline-block;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .cta-band-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.3); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      padding: 5rem 3rem 3rem;
-      border-top: 1px solid var(--hairline);
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 4rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .footer-logo {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 8vw, 8rem);
-      line-height: 0.88;
-      color: var(--white);
-      letter-spacing: -0.04em;
-    }
-    .footer-logo .red { color: var(--red); }
-
-    .footer-cols {
-      display: flex;
-      gap: 5rem;
-    }
-
-    .footer-links-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .footer-col-label {
-      font-size: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 0.4rem;
-    }
-
-    .footer-links-col a {
-      font-size: 0.6rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #555;
-      transition: color .2s;
-    }
-    .footer-links-col a:hover { color: var(--white); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-size: 0.5rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #333;
-    }
-
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: .08s; }
-    .reveal-d2 { transition-delay: .16s; }
-    .reveal-d3 { transition-delay: .24s; }
-    .reveal-d4 { transition-delay: .32s; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .hero-left { padding: 7rem 1.5rem 3rem; border-right: none; }
-      .friends-grid { grid-template-columns: 1fr 1fr; }
-      .social-grid { grid-template-columns: 1fr 1fr; }
-      .content-grid { grid-template-columns: 1fr; }
-      .section-wrap { padding: 3.5rem 1.5rem; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      footer { padding: 3rem 1.5rem 2rem; }
-      .footer-top { flex-direction: column; gap: 2rem; }
-      .cta-band { flex-direction: column; text-align: center; align-items: center; padding: 4rem 2rem; }
-      .type-divider { padding: 2rem 1.5rem 0; }
-    }
-
-    @media (max-width: 600px) {
-      .friends-grid { grid-template-columns: 1fr; }
-      .social-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mariopuff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home-projects.css">
+    <link rel="stylesheet" href="home-friends.css">
+    <link rel="stylesheet" href="home-socialmedia.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+</style>
 <body>
+    <header>
+        <div class="container">
+            <div class="left-text menu-toggle" aria-label="Toggle menu">
+                <p>mariopuff</p>
+            </div>
+            <nav class="center-nav">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="blog">Blog</a></li>
+                    <li><a href="extras">Extras</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="centered-text" style="font-family: 'NinNewMario', sans-serif !important;">
+            Mariopuff, game maker,<br>Formula One fan, and<br>casual chatter
+        </div>
+        <div class="content-below">
+            <h1 id="welcome-header">Welcome to Mariopuff's website <br>built with GitHub Pages!</h1>
+            <p id="first-paragraph">In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas,<br> and much more! Also I didn't code this myself, I used GPT 3.5 and 4o.</p>
+            <p id="second-paragraph">Anyway enjoy the content! If you want something to be added on the website, click this<br> teeny-weeny button below to friend me on Discord!</p>
+        </div>
+        
+        <script>
+            function updateContent() {
+                const headerElement = document.getElementById('welcome-header');
+                const firstParagraph = document.getElementById('first-paragraph');
+                const secondParagraph = document.getElementById('second-paragraph');
+        
+                if (window.innerWidth <= 768) {
+                    // For mobile: Change the line breaks as needed
+                    headerElement.innerHTML = "Welcome to Mariopuff's website built with GitHub Pages!";
+                    firstParagraph.innerHTML = "In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas, and much more!";
+                    secondParagraph.innerHTML = "Anyway enjoy the content! If you want something to be added on the website, click this teeny-weeny button below to friend me on Discord!";
+                } else {
+                    // For desktop: Keep the line breaks
+                    headerElement.innerHTML = "Welcome to Mariopuff's website <br>built with GitHub Pages!";
+                    firstParagraph.innerHTML = "In here you will find lots of fascinating stuff, like dumb blog posts, project updates, ideas,<br> and much more! Also I didn't code this myself, I used GPT 3.5 and 4o.";
+                    secondParagraph.innerHTML = "Anyway enjoy the content! If you want something to be added on the website, click this<br> teeny-weeny button below to friend me on Discord!";
+                }
+            }
+        
+            // Call the function on page load
+            window.onload = updateContent;
+        
+            // Add an event listener to update content on resize
+            window.onresize = updateContent;
+        </script>
+        
+        
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+        <a href="https://discord.com/users/913646560838041660" class="discord-friend-button" target="_blank">
+            <span class="icon">💬</span>
+            Discord!
+        </a>
+<br>
+<br>
+        <div class="gradient-overlay"></div>
+        <!-- <div class="projects-container">
 
-<!-- INVERTED NAV -->
-<nav>
-  <div class="nav-logo">MARIOPUFF</div>
-  <ul class="nav-links">
-    <li><a href="#friends">Friends</a></li>
-    <li><a href="#social">Social</a></li>
-    <li><a href="projects">Projects</a></li>
-    <li><a href="blog">Blog</a></li>
-    <li><a href="extras">Extras</a></li>
-  </ul>
-  <a href="https://discord.com/users/913646560838041660" class="nav-discord">💬 Discord</a>
-</nav>
+            <h1>Featured Projects</h1>
+            <div class="projects-scroll-arrow left">&lt;</div>
+            <div class="projects-card-container">
+                <div class="card project-1">
+                    <h2>Fulltimate Custom Night</h2>
+                    <p>Fulltimate Custom Night is a FNAF fangame, specifically of Ultimate Custom Night requiring the skills to be flexible, fast, and observant. This game is a combination of 
+                        Starmapo's Paint's Ultimate Custom Night and KamilFirma's Ultra Custom Night. The twist here is the fact that it's just not FNAF characters, it's EVERYTHING.</p>
+                        <a href="projects/fcn/" class="read-more-button">Read More</a>
+                </div>
 
-<div class="scroll-hint">scroll</div>
+                <div class="card project-2">
+                    <h2>The Japan-Italy-Siberia Minecraft SMP</h2>
+                    <p>The Japan-Italy-Siberia Minecraft SMP is a... Minecraft server where people (as countries) play the game together! Previously called Japanese-Italian Minecraft SMP, this 
+                        server was founded by Mario_184 and co-owned by UN4YA and 4unduck.</p>
+                    <a href="projects" class="read-more-button">Read More</a>
+                </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bleed">MP</div>
+                <div class="card project-3">
+                    <h2>Gender Custom Night</h2>
+                    <p>Probably a troll FNAF: UCN fangame involving identified genders as roster characters. Idea was came up in June 2024.</p>
+                    <a href="projects" class="read-more-button">Read More</a>
+                </div>
 
-  <div class="hero-left">
-    <p class="hero-tag">Game maker · F1 fan · Casual chatter</p>
-    <h1 class="hero-name">MARIO<span class="accent">PUFF</span></h1>
-    <p class="hero-desc">
-      In here you will find lots of fascinating stuff — dumb blog posts, project updates, ideas, and much more. Also I didn't code this myself, I used GPT.
-    </p>
-    <a href="https://discord.com/users/913646560838041660" class="hero-cta">
-      💬 Find me on Discord
-    </a>
-  </div>
+                <div class="card project-4">
+                    <h2>Superliminal for Roblox</h2>
+                    <p>Full recreation of the puzzle game "Superliminal" in Roblox Studio. Need to learn how to use the engine before coding it though.</p>
+                    <a href="projects" class="read-more-button">Read More</a>
+                </div>
 
-  <div class="hero-right">
-    <div class="hero-stats-panel">
-      <div class="hero-stat">
-        <span class="hero-stat-label">Primary passion</span>
-        <span class="hero-stat-value">Making Games</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-label">Currently watching</span>
-        <span class="hero-stat-value">Formula One</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-label">Favorite genre</span>
-        <span class="hero-stat-value">FNAF Fangames</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-label">Discord DMs</span>
-        <span class="hero-stat-value">Open 🟢</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-label">Currently playing</span>
-        <span class="hero-stat-value">Minecraft · Lethal Co.</span>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="card project-5">
+                    <h2>The Return to Fredbear and Springbonnie: Reboots</h2>
+                    <p>Remasters of the first FNAF "games" I made on Scratch. Actually adding gameplay this time with a lot more function instead of animatronics doing nothing unless you click them, only then they will deliver a jumpscare.</p>
+                    <a href="projects" class="read-more-button">Read More</a>
+                </div>
 
-<!-- FRIENDS DIVIDER -->
-<div class="type-divider">
-  <span class="type-divider-word">FRIENDS</span>
-</div>
+                <div class="card project-6">
+                    <h2 class="card-6-h2">That's not all!</h2>
+                    <p class="card-6-p">Want to see more? Head to Mariopuff's Projects!</p>
+                </div>
 
-<!-- FRIENDS -->
-<section class="section-wrap" id="friends">
-  <div class="section-header">
-    <h2 class="section-title">The Crew</h2>
-    <span class="section-num">01</span>
-  </div>
-  <div class="friends-grid">
+            </div>
+            <div class="projects-scroll-arrow right">&gt;</div>
+        </div>
+        <script src="scroll-projects.js"></script>    -->
+        
+        
+        <div class="friends-container">
+            <h1>Friends</h1>
+            <div class="friends-scroll-arrow left">&lt;</div>
+            <div class="friends-card-container">
+                <div class="card friend-1">
+                    <h2>UN4YA</h2>
+                    <p>The first friend I met when it try to find someone non-OG. Although I found him through a coding Discord server, he doesn't actually know how to code. 
+                        I think he was just invited there for nothing. He doesn't have any skill in FNAF-related games, but he masters the gameplay of <i>Minecraft</i>. Yeah, we play 
+                        it in the free time. And the surprising thing is he can have full diamond armor like a week from a season release. What a speedrunner, slow down man!</p>
+                </div>
 
-    <div class="friend-card reveal reveal-d1">
-      <div class="friend-num">Friend · 001</div>
-      <div class="friend-name">UN4YA</div>
-      <p class="friend-bio">The first friend I met when trying to find someone non-OG. Found him through a coding Discord server — he doesn't actually know how to code. I think he was just invited there for nothing. No skill in FNAF-related games whatsoever, but he absolutely masters Minecraft. Full diamond armor within a week of a season release. Slow down, man.</p>
-    </div>
+                <div class="card friend-2">
+                    <h2>interseer [formerly: 4unduck]</h2>
+                    <p>The unexpected friend I made when I was searching through the official Aternos server. Unlike beepybunny, he lives in the Siberian area near Japan. 
+                        That tells he is closer to me than beepybunny is. We both knew <i>Jackbox Games</i> when we first met and now he joins UN4YA and I on Minecraft. Aside from 
+                        the game, we three also played the first <i>You Don't Know Jack</i> game online. Additionally, I also got a lot of <i>Lethal Company</i> stuff that I wanted to learn from him.
+                        <br>
+                        <br>
+                        Russians really like <i>Lethal Company</i>, huh?</p>
+                </div>
 
-    <div class="friend-card reveal reveal-d2">
-      <div class="friend-num">Friend · 002</div>
-      <div class="friend-name">INTERSEER <span style="font-size:0.65rem;font-weight:300;color:#555;">[4unduck]</span></div>
-      <p class="friend-bio">The unexpected friend I made searching through the official Aternos server. Lives in the Siberian area near Japan — closer to me than beepybunny. Jackbox Games brought us together, Minecraft kept us there. Russians really like Lethal Company, huh?</p>
-    </div>
+                <div class="card friend-3">
+                    <h2>Seft</h2>
+                    <p>One of the originals. Not sure when and where I first met them, but they have joined me on a lot of stuff. Non-Binary, so watch out when you use pronouns against them.</p>
+                </div>
 
-    <div class="friend-card reveal reveal-d3">
-      <div class="friend-num">Original · 003</div>
-      <div class="friend-name">SEFT</div>
-      <p class="friend-bio">One of the originals. Not sure when or where I first met them, but they've joined me on a lot of stuff. Non-Binary — watch your pronouns.</p>
-    </div>
+                <div class="card friend-4">
+                    <h2>beepybunny</h2>
+                    <p>One of the originals in my FNAF-Discord experience. I actually didn't talk to him since that time until the seventh day of April 2024. Before that he made a FNAF 2 remake 
+                        in Retrostudio for multiple players, and before that he made his UCN fangame, <i>Ultimate Survival Night</i>. He also mentions that he lives in the Siberian area near Mongolia. 
+                        Like 4unduck, he really likes <i>Lethal Company.</i></p>
+                </div>
 
-    <div class="friend-card reveal reveal-d4">
-      <div class="friend-num">Original · 004</div>
-      <div class="friend-name">BEEPYBUNNY</div>
-      <p class="friend-bio">One of the originals from my FNAF-Discord days. Made a FNAF 2 remake in Retrostudio and a UCN fangame called Ultimate Survival Night. Lives in Siberia near Mongolia. Like 4unduck, really into Lethal Company.</p>
-    </div>
+            </div>
+            <div class="friends-scroll-arrow right">&gt;</div>
+        </div>
+        <script src="scroll-friends.js"></script> 
+        
+            <div class="social-media-container">
+            <h1>Social Media</h1>
+            <div class="social-scroll-arrow left">&lt;</div>
+            <div class="social-card-container">
+                <div class="card social-1">
+                    <h2>YouTube</h2>
+                    <h3>Mario_184</h3>
+                    <p>This is my main channel created in November 2021.
+                        I post random content, but you will find gaming
+                        most common. I play FNAF fangames, emulated
+                        Mario games, and more if you guys want me to play
+                        your recommended games.
+                    </p>
+                    <h3>Mariopuff & Friends</h3>
+                    <p>A seperate channel where I play games with my friends!
+                        We have a lot of fun together, and the nicest thing is we are open
+                        to invite one or two of you guys to hop in with us!
+                    </p>
+                    <a href="https://www.youtube.com/@mariopuff184/" class="social-button" target="_blank"><span class="icon">↗</span>Mario_184</a><br>
+                    <a href="https://www.youtube.com/@mariopuffandhomies/" class="social-button" target="_blank"><span class="icon">↗</span>Mariopuff & Friends</a>
+                </div>
 
-  </div>
-</section>
+                <div class="card social-2">
+                    <h2>Discord</h2>
+                    <p>Out of all the social networking sites, Discord ranks top 2 on my usage list.
+                        I use it to check on my friends, post funny memes, stream funny games, participate
+                        in events, and more. Why don't you find me on Discord? DMs open.
+                    </p>
+                    <a href="https://discord.com/users/913646560838041660" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff</a>
+                </div>
 
-<!-- SOCIAL DIVIDER -->
-<div class="type-divider red-div">
-  <span class="type-divider-word">SOCIAL</span>
-</div>
+                <div class="card social-3">
+                    <h2>Spotify</h2>
+                    <p>I listen to songs. So maybe you could reach out to me and share what your music taste is.
+                    I <b>might</b> be addicted to it after you tell me. Would love to find out about other
+                people's vibes. yay!</p>
+                    <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff!</a>
+                </div>
 
-<!-- SOCIAL -->
-<section class="section-wrap" id="social">
-  <div class="section-header">
-    <h2 class="section-title">Find Me Online</h2>
-    <span class="section-num">02</span>
-  </div>
-  <div class="social-grid">
+                <div class="card social-4">
+                    <h2>Reddit</h2>
+                    <p>I rarely post anything on Reddit, but when I do, it's probably stupid crap nobody
+                        cares about. I would appreciate it if you find me here, but expect me to check Reddit
+                        every two weeks.
+                    </p>
+                    <a href="https://www.reddit.com/user/SJM184/" class="social-button" target="_blank"><span class="icon">↗</span>SJM184</a>
+                </div>
 
-    <div class="social-card reveal reveal-d1">
-      <div class="social-platform">YouTube</div>
-      <div class="social-name">MARIO_184</div>
-      <p class="social-desc">Main channel since November 2021. Gaming mostly — FNAF fangames, emulated Mario, whatever you recommend.</p>
-      <a href="https://www.youtube.com/@mariopuff184/" class="social-link">@mariopuff184</a>
-    </div>
+                <div class="card social-5">
+                    <h2>Twitch</h2>
+                    <p>I make games. I play games. I stream games. However, same as Reddit, I don't stream very often.
+                    Unlike Reddit, I sometimes do go here to see other people stream, for example our good friend CaseOh.</p>
+                    <a href="https://www.twitch.tv/mariopuff" class="social-button" target="_blank"><span class="icon">↗</span>mariopuff</a>
+                </div>
 
-    <div class="social-card reveal reveal-d2">
-      <div class="social-platform">YouTube</div>
-      <div class="social-name">MP & FRIENDS</div>
-      <p class="social-desc">The collab channel. We play games together and we're open to invite one or two of you. Good times guaranteed.</p>
-      <a href="https://www.youtube.com/@mariopuffandhomies/" class="social-link">@mariopuffandhomies</a>
-    </div>
+                <div class="card social-6">
+                    <h2>Steam</h2>
+                    <p>I play games. I make games. I currently don't have access to Steam right now, so I'm only available on web.
+                        Currently, I'm at level 0, but I might buy games in the future. Who knows?
+                    </p>
+                    <a href="https://steamcommunity.com/id/hallwayheat/" class="social-button" target="_blank"><span class="icon">↗</span>hallwayheat</a>
+                </div>
 
-    <div class="social-card reveal reveal-d3">
-      <div class="social-platform">Discord</div>
-      <div class="social-name">MARIOPUFF</div>
-      <p class="social-desc">Top 2 on my usage list. Memes, streams, events, friend check-ins. DMs are wide open.</p>
-      <a href="https://discord.com/users/913646560838041660" class="social-link">mariopuff</a>
-    </div>
+                <div class="card social-7">
+                    <h2>X (Formerly Twitter)</h2>
+                    <p>This is my Formerly Twitter account. Nothing special, just stupid posts. I also don't go there
+                        frequently, so yeah. Also I only accept <b>real</b> followers, not those accounts which go
+                        follow random people.
+                    </p>
+                    <a href="https://x.com/toybunny_" class="social-button" target="_blank"><span class="icon">↗</span>toybunny_</a>
+                </div>
 
-    <div class="social-card reveal reveal-d4">
-      <div class="social-platform">Spotify</div>
-      <div class="social-name">MARIOPUFF!</div>
-      <p class="social-desc">I listen to songs. Tell me your music taste and I might get addicted. Would love to find your vibes. yay!</p>
-      <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl" class="social-link">mariopuff!</a>
-    </div>
+                <div class="card social-8">
+                    <h2>Roblox</h2>
+                    <p>I have Roblox, like every normal kid. I play FNAF 2: Reimagined, Superliminal, and DOORS. Would love
+                    it if you friend me. My current goal is 20 friends. 😋</p>
+                    <a href="https://www.roblox.com/users/6220154646/profile" class="social-button" target="_blank"><span class="icon">↗</span>liminalsoups</a>
+                </div>
 
-    <div class="social-card reveal reveal-d1">
-      <div class="social-platform">Twitch</div>
-      <div class="social-name">MARIOPUFF</div>
-      <p class="social-desc">I make games, play games, stream games. Don't stream super often — also here watching others like CaseOh.</p>
-      <a href="https://www.twitch.tv/mariopuff" class="social-link">mariopuff</a>
-    </div>
+            </div>
+            <div class="social-scroll-arrow right">&gt;</div>
+        </div>
+        <script src="scroll-social.js"></script> 
+    </main>
+    <script src="mobile-menu.js"></script> 
 
-    <div class="social-card reveal reveal-d2">
-      <div class="social-platform">Steam</div>
-      <div class="social-name">HALLWAYHEAT</div>
-      <p class="social-desc">Level 0, web-only for now. Might buy games in the future. Who knows? The journey starts somewhere.</p>
-      <a href="https://steamcommunity.com/id/hallwayheat/" class="social-link">hallwayheat</a>
-    </div>
 
-    <div class="social-card reveal reveal-d3">
-      <div class="social-platform">Reddit</div>
-      <div class="social-name">SJM184</div>
-      <p class="social-desc">Rarely post anything — and when I do, it's probably stupid crap nobody cares about. Check every two weeks.</p>
-      <a href="https://www.reddit.com/user/SJM184/" class="social-link">SJM184</a>
-    </div>
+    <script>
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add('scrolled'); // Add class on scroll
+            } else {
+                header.classList.remove('scrolled'); // Remove class when at top
+            }
+        };
+    </script>
 
-    <div class="social-card reveal reveal-d4">
-      <div class="social-platform">Roblox</div>
-      <div class="social-name">LIMINALSOUPS</div>
-      <p class="social-desc">I have Roblox, like every normal kid. FNAF 2: Reimagined, Superliminal, DOORS. Goal: 20 friends. 😋</p>
-      <a href="https://www.roblox.com/users/6220154646/profile" class="social-link">liminalsoups</a>
-    </div>
 
-  </div>
-</section>
-
-<!-- CONTENT DIVIDER -->
-<div class="type-divider">
-  <span class="type-divider-word">CONTENT</span>
-</div>
-
-<!-- BLOG + PROJECTS -->
-<section class="section-wrap" id="content">
-  <div class="section-header">
-    <h2 class="section-title">The Stuff I Make</h2>
-    <span class="section-num">03</span>
-  </div>
-  <div class="content-grid">
-    <div class="content-card reveal reveal-d1">
-      <div class="content-big-num">01</div>
-      <div class="content-label">Writing</div>
-      <div class="content-title">BLOG</div>
-      <p class="content-desc">Dumb posts, random thoughts, ideas that probably shouldn't exist. Updated whenever I feel like it — which is sometimes a lot, sometimes never.</p>
-      <a href="blog" class="content-link">Read the blog →</a>
-    </div>
-    <div class="content-card reveal reveal-d2">
-      <div class="content-big-num">02</div>
-      <div class="content-label">Making Stuff</div>
-      <div class="content-title">PROJECTS</div>
-      <p class="content-desc">Games, experiments, things I built. Some finished, some definitely not. Come see what I've been up to when I'm not watching F1 or playing Minecraft.</p>
-      <a href="projects" class="content-link">See projects →</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<div class="cta-band">
-  <div class="cta-band-text">
-    say hi<br><span class="dim">on discord.</span>
-  </div>
-  <a href="https://discord.com/users/913646560838041660" class="cta-band-btn">💬 Friend me on Discord</a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-logo">MARIO<span class="red">PUFF</span></div>
-    <div class="footer-cols">
-      <div class="footer-links-col">
-        <div class="footer-col-label">Navigation</div>
-        <a href="#friends">Friends</a>
-        <a href="#social">Social</a>
-        <a href="projects">Projects</a>
-        <a href="blog">Blog</a>
-        <a href="extras">Extras</a>
-      </div>
-      <div class="footer-links-col">
-        <div class="footer-col-label">Socials</div>
-        <a href="https://www.youtube.com/@mariopuff184/">YouTube</a>
-        <a href="https://discord.com/users/913646560838041660">Discord</a>
-        <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl">Spotify</a>
-        <a href="https://www.twitch.tv/mariopuff">Twitch</a>
-        <a href="https://x.com/toybunny_">X</a>
-        <a href="https://www.roblox.com/users/6220154646/profile">Roblox</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2025 liminalchopsoups</div>
-    <div class="footer-copy">Game maker · F1 fan · Casual chatter</div>
-  </div>
-</footer>
-
-<script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  setTimeout(() => {
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  }, 80);
-});
-
-// SCROLL REVEAL
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// HERO PARALLAX on bleed text
-window.addEventListener('scroll', () => {
-  const bleed = document.querySelector('.hero-bleed');
-  if (bleed) bleed.style.transform = `translateY(${scrollY * 0.15}px)`;
-});
-</script>
 </body>
+<footer>
+    <div class="footer-connections">
+        <a href="https://www.youtube.com/@mariopuff184"><img class="icon-large" src="/assets/yt-footer.svg" alt="icon"></a>
+        <a href="https://discord.com/users/913646560838041660"><img class="icon-large" src="/assets/dsc-footer.svg" alt="icon"></a>
+        <a href="https://open.spotify.com/user/xftko2c2nq2exfwg3tes82asl"><img class="icon-large" src="/assets/spotify-footer.svg" alt="icon"></a>
+        <a href="https://www.reddit.com/user/SJM184/"><img class="icon-large" src="/assets/reddit-footer.svg" alt="icon"></a>
+        <a href="https://twitch.tv/mariopuff"><img class="icon-large" src="/assets/twitch-footer.svg" alt="icon"></a>
+        <a href="https://steamcommunity.com/id/hallwayheat/"><img class="icon-large" src="/assets/steam-footer.svg" alt="icon"></a>
+        <a href="https://x.com/toybunny_"><img class="icon-large" src="/assets/formerlytwitter-footer.svg" alt="icon"></a>
+        <a href="https://www.roblox.com/users/6220154646/profile"><img class="icon-large" src="/assets/roblox-footer.svg" alt="icon"></a>
+    </div>
+    <p>&copy; 2025 liminalchopsoups</p>
+</footer>
 </html>
